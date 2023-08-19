@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 #from django.utils.html import format_html
 from django.contrib.auth import get_user_model
+from django.templatetags.static import static
 
 User = get_user_model()
 
@@ -41,13 +42,13 @@ class Advertisements(models.Model):
             )
         return self.updated_at.strftime("%d. %m.%Y в %H:%M:%S ")
     
-    @admin.display(description='Изображение')
+    @admin.display(description="Изображение")
     def image_tag(self):
         from django.utils.html import format_html
         if self.image:
             return format_html('<img src="{}" width="50"/>'.format(self.image.url))
         else:
-            return '-'
-    image_tag.short_description = 'Thumbnail'
+            default_image_url = static('img/adv.png')
+            return format_html('<img src="{}" width="50"/>'.format(default_image_url))
 
 

@@ -6,7 +6,7 @@ class AdvertisementsAdmin(admin.ModelAdmin):
     list_filter=["auction","created_at"]
     actions = ["make_auction_as_false","make_auction_as_true"]
     fieldsets =(
-        ("Общие" ,{"fields":('title', 'description','image_tag')}),
+        ("Общие" ,{"fields":('title', 'description','image')}),
         ("Финансы",{"fields":('price','auction'),
         "classes":['collapse']
             })
